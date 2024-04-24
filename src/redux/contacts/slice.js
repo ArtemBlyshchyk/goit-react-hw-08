@@ -1,6 +1,5 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { fetchContacts, addContact, deleteContact } from "./contactsOps";
-import { selectContacts, selectNameFilter } from "./selectors";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchContacts, addContact, deleteContact } from "./operations";
 
 const INITIAL_STATE = {
   items: [],
@@ -54,13 +53,3 @@ const contactsSlice = createSlice({
 
 // Редюсер слайсу
 export const contactsReducer = contactsSlice.reducer;
-
-//Memomized selector
-export const selectFilteredContacts = createSelector(
-  [selectContacts, selectNameFilter],
-  (items, name) => {
-    return items.filter((contact) => {
-      return contact.name.toLowerCase().includes(name.toLowerCase());
-    });
-  }
-);
