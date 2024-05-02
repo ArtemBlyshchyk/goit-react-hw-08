@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import css from "./ContactsPage.module.css";
 import { fetchContacts } from "../../redux/contacts/operations";
 import {
-  selectPhoneBookContacts,
   selectPhoneBookIsError,
   selectPhoneBookIsLoading,
 } from "../../redux/contacts/selectors";
@@ -11,10 +10,12 @@ import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import AddContactForm from "../../components/AddContactForm/AddContactForm";
 import Contact from "../../components/Contact/Contact";
+import { selectFilteredContacts } from "../../redux/filters/selectors";
+import SearchBox from "../../components/SearchBox/SearchBox";
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectPhoneBookContacts);
+  const contacts = useSelector(selectFilteredContacts);
   const isLoading = useSelector(selectPhoneBookIsLoading);
   const isError = useSelector(selectPhoneBookIsError);
 
@@ -24,6 +25,7 @@ const ContactsPage = () => {
   return (
     <div className={css.contactContainer}>
       <AddContactForm />
+      <SearchBox />
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
       <ul className={css.listContact}>
