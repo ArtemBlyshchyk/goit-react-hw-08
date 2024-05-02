@@ -1,8 +1,14 @@
 import css from "./Contact.module.css";
-import { FaUser } from "react-icons/fa";
+import {
+  FaUser,
+  // FaPencilAlt
+} from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contacts/operations";
+import {
+  deleteContact,
+  // editContact
+} from "../../redux/contacts/operations";
 
 const Contact = ({ contact }) => {
   const dispatch = useDispatch();
@@ -10,6 +16,11 @@ const Contact = ({ contact }) => {
   const onDeleteContact = (contactId) => {
     dispatch(deleteContact(contactId));
   };
+
+  //Function of edit contacts
+  // const onEditContact = (contactId, formData) => {
+  //   dispatch(editContact({ contactId, formData }));
+  // };
 
   return (
     <li className={css.itemContact}>
@@ -30,6 +41,11 @@ const Contact = ({ contact }) => {
       <button type="button" onClick={() => onDeleteContact(contact.id)}>
         Delete
       </button>
+      {/* <button type="button" onClick={() => onEditContact(contact.id)}>
+        <span>
+          <FaPencilAlt />
+        </span>
+      </button> */}
     </li>
   );
 };
