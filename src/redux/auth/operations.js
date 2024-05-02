@@ -21,7 +21,6 @@ export const register = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const { data } = await instance.post("/users/signup", formData);
-      console.log("Register data: ", data);
       // After successful registration, add the token to the HTTP header
       setToken(data.token);
       return data;
@@ -37,7 +36,6 @@ export const logIn = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const { data } = await instance.post("/users/login", formData);
-      console.log("Login data: ", data);
       // After successful registration, add the token to the HTTP header
       setToken(data.token);
       return data;
@@ -72,7 +70,6 @@ export const refreshUser = createAsyncThunk(
     try {
       setToken(token); //Set token in the header of the axios's instance in the field authorization
       const { data } = await instance.get("/users/current");
-      console.log("REFRESH data: ", data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -12,7 +12,6 @@ export const fetchContacts = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const { data } = await instance.get("/contacts");
-      console.log("GET data: ", data);
       return data; // ТЕ, ЩО ПОВЕРТАЄТЬСЯ З САНКИ ПОТРАПЛЯЄ В action.payload
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -26,7 +25,6 @@ export const addContact = createAsyncThunk(
   async (formData, thunkApi) => {
     try {
       const { data } = await instance.post("/contacts", formData);
-      console.log("addContact data: ", data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
