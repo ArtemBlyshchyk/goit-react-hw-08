@@ -22,7 +22,7 @@ const ContactsPage = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
   return (
-    <div>
+    <div className={css.contactContainer}>
       <AddContactForm />
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
