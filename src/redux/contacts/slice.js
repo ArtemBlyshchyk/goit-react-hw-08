@@ -5,6 +5,7 @@ import {
   deleteContact,
   updateContact,
 } from "./operations";
+import { logOut } from "../auth/operations";
 
 const INITIAL_STATE = {
   contacts: null,
@@ -49,6 +50,11 @@ const contactsSlice = createSlice({
         if (contactIndex !== -1) {
           state.contacts[contactIndex] = action.payload;
         }
+      })
+
+      //LogOut
+      .addCase(logOut.fulfilled, () => {
+        return INITIAL_STATE;
       })
 
       .addMatcher(
