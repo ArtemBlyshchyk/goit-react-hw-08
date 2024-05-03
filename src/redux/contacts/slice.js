@@ -44,12 +44,20 @@ const contactsSlice = createSlice({
       //Update contact
       .addCase(updateContact.fulfilled, (state, action) => {
         state.isLoading = false;
-        const contactIndex = state.contacts.findIndex(
-          (contact) => contact.id === action.payload.id
+
+        //Furst variant
+        state.contacts = state.contacts.map((contact) =>
+          contact.id === action.payload.id ? action.payload : contact
         );
-        if (contactIndex !== -1) {
-          state.contacts[contactIndex] = action.payload;
-        }
+
+        //Second Variant
+        // const contactIndex = state.contacts.findIndex(
+        //   (contact) => contact.id === action.payload.id
+        // );
+        // if (contactIndex !== -1) {
+        //   // the condition mean not differ(-1) - the same
+        //   state.contacts[contactIndex] = action.payload;
+        // }
       })
 
       //LogOut
